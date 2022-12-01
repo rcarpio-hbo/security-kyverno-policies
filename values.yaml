@@ -7,13 +7,13 @@ global:
   validationFailureAction: "enforce"
 
 disallowPrivilegeEscalation:
-  enable: true
+  enable: false
   validationFailureAction: ""
 
 disallowPrivilegedContainers:
-  enable: true
+  enable: false
   validationFailureAction: ""
 
 disallowLatestTag:
-  enable: true
+  enable: false
   validationFailureAction: ""
