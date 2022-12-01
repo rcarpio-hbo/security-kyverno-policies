@@ -1,0 +1,56 @@
+{{- if or .Values.global.enableAll .Values.disallowLatestTag.enable }}
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: disallow-latest-tag
+  annotations:
+    policies.kyverno.io/title: Disallow Latest Tag
+    policies.kyverno.io/category: Best Practices
+    policies.kyverno.io/severity: medium
+    policies.kyverno.io/subject: Pod
+    policies.kyverno.io/description: >-
+      The ':latest' tag is mutable and can lead to unexpected errors if the
+      image changes. A best practice is to use an immutable tag that maps to
+      a specific version of an application Pod. This policy validates that the image
+      specifies a tag and that it is not called `latest`.      
+spec:
+{{- if .Values.global.validationFailureAction }}
+  validationFailureAction: {{ .Values.global.validationFailureAction | quote }}
+{{- else }}
+  validationFailureAction: {{ .Values.disallowLatestTag.validationFailureAction | default "audit" | quote }}
+{{- end }}
+  background: true
+  rules:
+  - name: require-image-tag
+    match:
+      resources:
+        kinds:
+        - Pod
+    preconditions:
+      all:
+      - key: {{`"{{ request.\"object\".metadata.annotations.\"ignore-check.kyverno.io/disallow-latest-tag\" || '' }}"`}}
+        operator: NotEquals
+        value: "?*"
+    validate:
+      message: "An image tag is required."
+      pattern:
+        spec:
+          containers:
+          - image: "*:*"
+  - name: validate-image-tag
+    match:
+      resources:
+        kinds:
+        - Pod
+    preconditions:
+      all:
+      - key: {{`"{{ request.\"object\".metadata.annotations.\"ignore-check.kyverno.io/disallow-latest-tag\" || '' }}"`}}
+        operator: NotEquals
+        value: "?*"
+    validate:
+      message: "Using a mutable image tag e.g. 'latest' is not allowed."
+      pattern:
+        spec:
+          containers:
+          - image: "!*:latest"
+{{- end }}

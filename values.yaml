@@ -1,0 +1,19 @@
+# Default values for security-kyverno-policies.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  enableAll: false
+  validationFailureAction: "enforce"
+
+disallowPrivilegeEscalation:
+  enable: true
+  validationFailureAction: ""
+
+disallowPrivilegedContainers:
+  enable: true
+  validationFailureAction: ""
+
+disallowLatestTag:
+  enable: true
+  validationFailureAction: ""
