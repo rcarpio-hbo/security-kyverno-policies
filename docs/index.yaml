@@ -3,12 +3,12 @@ entries:
   security-kyverno-policies:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2022-12-01T19:02:55.150102+01:00"
+    created: "2022-12-02T10:28:29.691779+01:00"
     description: A Helm chart for Kubernetes
-    digest: 46219ff9d31240f19772768f1b5aeaf013aa9a458854ec4861db683497c9235c
+    digest: 241305033c6f5e01c194191c31287a9fc418442db3e85455668842a5ff2980ba
     name: security-kyverno-policies
     type: application
     urls:
-    - https://rcarpio-hbo.github.io/security-kyverno-policies/docs/security-kyverno-policies-0.1.0.tgz
+    - https://rcarpio-hbo.github.io/security-kyverno-policies/security-kyverno-policies-0.1.0.tgz
     version: 0.1.0
-generated: "2022-12-01T19:02:55.14951+01:00"
+generated: "2022-12-02T10:28:29.691332+01:00"
