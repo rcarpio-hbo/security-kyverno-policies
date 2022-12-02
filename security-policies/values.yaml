@@ -4,7 +4,7 @@
 
 global:
   enableAll: false
-  validationFailureAction: "enforce"
+  validationFailureAction: ""
 
 disallowPrivilegeEscalation:
   enable: false
