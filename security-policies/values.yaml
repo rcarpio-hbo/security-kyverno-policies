@@ -1,19 +1,25 @@
 # Default values for security-kyverno-policies.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
 
 global:
+  # -- Enable all available rules from this helm chart: false or true.
   enableAll: false
+  # -- Rule type for all rules: enforce or audit
   validationFailureAction: ""
 
 disallowPrivilegeEscalation:
+  # -- If true, _disallowPrivilegeEscalation_ policy enabled 
   enable: false
+  # -- Rule type: enforce or audit
   validationFailureAction: ""
 
 disallowPrivilegedContainers:
+  # -- If true, _disallowPrivilegedContainers_ policy enabled 
   enable: false
+  # -- Rule type: enforce or audit
   validationFailureAction: ""
 
 disallowLatestTag:
+  # -- If true, _disallowLatestTag_ policy enabled 
   enable: false
+  # -- Rule type: enforce or audit
   validationFailureAction: ""

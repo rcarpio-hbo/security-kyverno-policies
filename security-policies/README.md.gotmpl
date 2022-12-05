@@ -1,0 +1,32 @@
+{{ template "chart.header" . }}
+{{ template "chart.description" . }}
+
+{{ template "chart.versionBadge" . }}{{ template "chart.appVersionBadge" . }}
+
+## Adding  the Chart
+
+Before installing the chart, add the `security-policies` charts repository:
+```console
+$ helm repo add security-policies https://rcarpio-hbo.github.io/security-kyverno-policies/
+$ helm repo update
+```
+## Installing the Chart
+
+To install the chart with the release name `policies` in namespace `security-policies` run:
+
+```console
+$ helm install policies security-policies/security-kyverno-policies --namespace security-policies --create-namespace
+```
+
+## Available Rules
+
+<!-- BEGIN_CURRENT_LTS -->
+- **best-practices**
+   - [disallow-latest-tag.yaml](./template/best-practices/disallow-latest-tag.yaml)
+- **pod-security-standards**
+   - [disallow-privilege-escalation.yaml](./template/pod-security-standards/disallow-privilege-escalation.yaml)
+   - [disallow-privileged-containers.yaml](./template/pod-security-standards/disallow-privileged-containers.yaml)
+<!-- END_AVAILABLE_RULES -->
+
+
+{{ template "chart.valuesSection" . }}
